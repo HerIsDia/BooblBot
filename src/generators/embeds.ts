@@ -10,5 +10,9 @@ export const aboutEmbed = (user: User) => {
     .setAuthor({
       name: user.username,
       iconURL: user.avatarURL() as string,
-    });
+    })
+    .setThumbnail(
+      'https://media.discordapp.net/attachments/862742407925727283/958854744099676200/BooblBot.png'
+    )
+    .setColor(13854074);
 };
