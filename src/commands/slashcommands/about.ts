@@ -1,11 +1,13 @@
 import { Client, CommandInteraction } from 'discord.js';
+import { aboutEmbedButton } from '../../generators/buttons';
 import { aboutEmbed } from '../../generators/embeds';
-import { aboutSelect } from '../../generators/selectMenu';
 
 export const run = async (client: Client, interaction: CommandInteraction) => {
+  const user = interaction.user;
+  const embed = aboutEmbed(user);
   interaction.reply({
-    embeds: [aboutEmbed()],
-    components: [aboutSelect],
+    embeds: [embed],
+    components: [aboutEmbedButton],
     ephemeral: true,
   });
 };

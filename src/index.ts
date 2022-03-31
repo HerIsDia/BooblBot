@@ -1,21 +1,12 @@
 // Import NPM Packages
-import {
-  ButtonInteraction,
-  Client,
-  ClientEvents,
-  CommandInteraction,
-  ContextMenuInteraction,
-  Intents,
-  SelectMenuInteraction,
-} from 'discord.js';
-import { readFile, readdirSync } from 'fs';
+import { Client, Intents } from 'discord.js';
+import { readdirSync } from 'fs';
 require('dotenv').config();
 
-// Import Local Functions
-import { registerCommands } from './commands/registerCommands';
-
 // Create Client and Set Intents
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES],
+});
 const token = process.env.TOKEN as string;
 
 // Create interface for events handlers

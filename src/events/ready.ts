@@ -8,5 +8,8 @@ module.exports = {
   once: true,
   run: (client: Client) => {
     registerCommands(token, client);
+    client.user?.setActivity({
+      name: 'BooblBot - Version dev.',
+    });
   },
 };
