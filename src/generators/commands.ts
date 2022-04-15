@@ -2,6 +2,7 @@ import {
   SlashCommandBuilder,
   ContextMenuCommandBuilder,
 } from '@discordjs/builders';
+import { languagesSelectors } from '../languages';
 
 // command "/about"
 const about = new SlashCommandBuilder()
@@ -32,6 +33,11 @@ const translate = new SlashCommandBuilder()
           .setName('to')
           .setDescription('The latest language to translate to.')
           .setRequired(false)
+          .addChoices(
+            languagesSelectors.map((lang) => {
+              return [lang, lang];
+            })
+          )
       )
       .addStringOption((str) =>
         str
@@ -61,6 +67,11 @@ const translate = new SlashCommandBuilder()
           .setName('to')
           .setDescription('The latest language to translate to.')
           .setRequired(false)
+          .addChoices(
+            languagesSelectors.map((lang) => {
+              return [lang, lang];
+            })
+          )
       )
       .addStringOption((str) =>
         str
@@ -90,6 +101,11 @@ const translate = new SlashCommandBuilder()
           .setName('to')
           .setDescription('The latest language to translate to.')
           .setRequired(false)
+          .addChoices(
+            languagesSelectors.map((lang) => {
+              return [lang, lang];
+            })
+          )
       )
       .addStringOption((str) =>
         str
@@ -121,6 +137,11 @@ const translate = new SlashCommandBuilder()
           .setName('to')
           .setDescription('The latest language to translate to.')
           .setRequired(false)
+          .addChoices(
+            languagesSelectors.map((lang) => {
+              return [lang, lang];
+            })
+          )
       )
       .addStringOption((str) =>
         str
@@ -130,4 +151,12 @@ const translate = new SlashCommandBuilder()
       )
   );
 
-export const commands = [about, translate];
+const translateApp = new ContextMenuCommandBuilder()
+  .setType(3)
+  .setName('translate');
+
+const settings = new SlashCommandBuilder()
+  .setName('settings')
+  .setDescription('🔧 Open the settings menu.');
+
+export const commands = [about, translate, translateApp, settings];
