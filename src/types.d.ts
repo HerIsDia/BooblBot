@@ -104,3 +104,47 @@ export type Languages =
   | 'Yiddish'
   | 'Yoruba'
   | 'Zulu';
+
+export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
+
+export interface Series {
+  name: string;
+  description: string;
+  emoji?: string;
+  languages: Languages[];
+}
+
+export interface ParsedMessage {
+  translate: Translate;
+  jokeLanguage?: 'French' | 'English';
+  text: {
+    original: string;
+    translated: string;
+    steps: string[];
+  };
+  to: Languages;
+  date: string;
+  serie: string;
+  serverID: string;
+  userID: string;
+  public: boolean;
+  inNotion: boolean;
+  isPublic: boolean;
+  notionURL?: string;
+}
+
+export interface ParsedUser {
+  visibility: boolean;
+  share: 'private' | 'unlisted' | 'public';
+  defaults: {
+    to: Languages;
+    serie: string;
+  };
+  messages: string[];
+}
+
+export interface ParsedServer {
+  visibleOn: 'none' | 'channel' | 'server';
+  channel: string;
+  defaultLanguage: Languages;
+}
