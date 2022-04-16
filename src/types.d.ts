@@ -107,7 +107,7 @@ export type Language =
 
 export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
 
-export interface Chain {
+export interface Serie {
   name: string;
   description: string;
   emoji?: string;
@@ -124,7 +124,7 @@ export interface BooblMessage {
   };
   to: Language;
   date: string;
-  chain: string;
+  serie: string;
   serverID: string;
   userID: string;
   public: boolean;
@@ -138,7 +138,7 @@ export interface BooblUser {
   share: 'private' | 'unlisted' | 'public';
   defaults: {
     to: Language;
-    chain: string;
+    serie: string;
   };
   messages: string[];
 }

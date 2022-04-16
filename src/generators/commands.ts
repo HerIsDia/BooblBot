@@ -3,7 +3,7 @@ import {
   ContextMenuCommandBuilder,
 } from '@discordjs/builders';
 import { languagesSelectors } from '../languages';
-import { chains } from '../scripts/chain';
+import { series } from '../scripts/series';
 
 // command "/about"
 const about = new SlashCommandBuilder()
@@ -42,16 +42,16 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('chain')
-          .setDescription('Choose the language chain that will be used.')
+          .setName('serie')
+          .setDescription('Choose the language serie that will be used.')
           .setRequired(false)
           .addChoices(
-            chains().map((chain) => {
+            series().map((serie) => {
               return [
-                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
-                  chain.description
+                `${serie.emoji ? `${serie.emoji} ` : ''}${serie.name}: ${
+                  serie.description
                 }.`,
-                chain.name,
+                serie.name,
               ];
             })
           )
@@ -86,16 +86,16 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('chain')
-          .setDescription('Choose the language chains that will be used.')
+          .setName('serie')
+          .setDescription('Choose the language series that will be used.')
           .setRequired(false)
           .addChoices(
-            chains().map((chain) => {
+            series().map((serie) => {
               return [
-                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
-                  chain.description
+                `${serie.emoji ? `${serie.emoji} ` : ''}${serie.name}: ${
+                  serie.description
                 }.`,
-                chain.name,
+                serie.name,
               ];
             })
           )
@@ -130,16 +130,16 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('chain')
-          .setDescription('Choose the language chains that will be used.')
+          .setName('serie')
+          .setDescription('Choose the language series that will be used.')
           .setRequired(false)
           .addChoices(
-            chains().map((chain) => {
+            series().map((serie) => {
               return [
-                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
-                  chain.description
+                `${serie.emoji ? `${serie.emoji} ` : ''}${serie.name}: ${
+                  serie.description
                 }.`,
-                chain.name,
+                serie.name,
               ];
             })
           )
@@ -176,16 +176,16 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('chain')
-          .setDescription('Choose the language chains that will be used.')
+          .setName('serie')
+          .setDescription('Choose the language series that will be used.')
           .setRequired(false)
           .addChoices(
-            chains().map((chain) => {
+            series().map((serie) => {
               return [
-                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
-                  chain.description
+                `${serie.emoji ? `${serie.emoji} ` : ''}${serie.name}: ${
+                  serie.description
                 }.`,
-                chain.name,
+                serie.name,
               ];
             })
           )
