@@ -107,8 +107,15 @@ export type Language =
 
 export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
 
+export type SerieName =
+  | 'The original'
+  | 'The default'
+  | 'The lore'
+  | 'The lunatic'
+  | 'The surprise';
+
 export interface Serie {
-  name: string;
+  name: SerieName;
   description: string;
   emoji?: string;
   languages: Language[];
@@ -119,17 +126,17 @@ export interface BooblMessage {
   jokeLanguage?: 'French' | 'English';
   text: {
     original: string;
-    translated: string;
-    steps: string[];
+    translated?: string;
+    steps?: string[];
   };
   to: Language;
-  date: string;
-  serie: string;
-  serverID: string;
+  date: Date;
+  serie: SerieName;
+  serverID?: string;
   userID: string;
-  public: boolean;
+  isVisible: boolean;
   inNotion: boolean;
-  isPublic: boolean;
+  isPublish: boolean;
   notionURL?: string;
 }
 
@@ -138,7 +145,7 @@ export interface BooblUser {
   share: 'private' | 'unlisted' | 'public';
   defaults: {
     to: Language;
-    serie: string;
+    serie: SerieName;
   };
   messages: string[];
 }
@@ -147,4 +154,16 @@ export interface BooblServer {
   visibleOn: 'none' | 'channel' | 'server';
   channel: string;
   defaultLanguage: Language;
+}
+
+export interface BooblEmbed {
+  start: string;
+  type: Translate;
+  id: string;
+  date: Date;
+  progress: number;
+  languages: string[];
+  serie: string;
+  user: User;
+  end?: string;
 }

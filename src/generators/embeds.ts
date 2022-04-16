@@ -1,7 +1,7 @@
 import { Embed } from '@discordjs/builders';
 import { User } from 'discord.js';
 import { inProgressNumber } from '../scripts/progressBar';
-import { Translate } from '../types';
+import { BooblEmbed, Translate } from '../types';
 
 export const aboutEmbed = (user: User) => {
   return new Embed()
@@ -27,18 +27,7 @@ export const errorEmbed = (title: string, description: string) => {
     .setTimestamp(new Date());
 };
 
-export const translateEmbed = (options: {
-  start: string;
-  type: Translate;
-  id: string;
-  date: Date;
-  progress: number;
-  languages: string[];
-  serie: string;
-  user: User;
-  method: string;
-  end?: string;
-}) => {
+export const translateEmbed = (options: BooblEmbed) => {
   return new Embed()
     .setTitle(
       options.end
@@ -53,7 +42,7 @@ export const translateEmbed = (options: {
             options.serie
           }__ serie.\nThe result is in __${
             options.languages[options.languages.length - 1]
-          }__, as ${options.method}.`
+          }__.`
         : `${
             inProgressNumber(options.progress, options.languages.length)
               .percentage2Digits

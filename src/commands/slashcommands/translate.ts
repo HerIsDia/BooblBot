@@ -2,10 +2,15 @@ import { Client, CommandInteraction, User } from 'discord.js';
 import { BooblUser, Translate } from '../../types';
 import { nanoid } from 'nanoid';
 import { errorEmbed } from '../../generators/embeds';
+import { translateText } from '../../scripts/text';
 
 export const run = async (client: Client, interaction: CommandInteraction) => {
   const type: Translate = interaction.options.getSubcommand() as Translate;
   switch (type) {
+    case 'text':
+      translateText(interaction);
+      break;
+
     default:
       interaction.reply({
         embeds: [
