@@ -3,6 +3,7 @@ import {
   ContextMenuCommandBuilder,
 } from '@discordjs/builders';
 import { languagesSelectors } from '../languages';
+import { chains } from '../scripts/chain';
 
 // command "/about"
 const about = new SlashCommandBuilder()
@@ -41,9 +42,19 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('from')
-          .setDescription('Choose the language series that will be used.')
+          .setName('chain')
+          .setDescription('Choose the language chain that will be used.')
           .setRequired(false)
+          .addChoices(
+            chains().map((chain) => {
+              return [
+                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
+                  chain.description
+                }.`,
+                chain.name,
+              ];
+            })
+          )
       )
   )
   .addSubcommand((subcommand) =>
@@ -75,9 +86,19 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('from')
-          .setDescription('Choose the language series that will be used.')
+          .setName('chain')
+          .setDescription('Choose the language chains that will be used.')
           .setRequired(false)
+          .addChoices(
+            chains().map((chain) => {
+              return [
+                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
+                  chain.description
+                }.`,
+                chain.name,
+              ];
+            })
+          )
       )
   )
   .addSubcommand((subcommand) =>
@@ -109,9 +130,19 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('from')
-          .setDescription('Choose the language series that will be used.')
+          .setName('chain')
+          .setDescription('Choose the language chains that will be used.')
           .setRequired(false)
+          .addChoices(
+            chains().map((chain) => {
+              return [
+                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
+                  chain.description
+                }.`,
+                chain.name,
+              ];
+            })
+          )
       )
   )
   .addSubcommand((subcommand) =>
@@ -145,9 +176,19 @@ const translate = new SlashCommandBuilder()
       )
       .addStringOption((str) =>
         str
-          .setName('from')
-          .setDescription('Choose the language series that will be used.')
+          .setName('chain')
+          .setDescription('Choose the language chains that will be used.')
           .setRequired(false)
+          .addChoices(
+            chains().map((chain) => {
+              return [
+                `${chain.emoji ? `${chain.emoji} ` : ''}${chain.name}: ${
+                  chain.description
+                }.`,
+                chain.name,
+              ];
+            })
+          )
       )
   );
 

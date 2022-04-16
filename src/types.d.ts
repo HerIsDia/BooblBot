@@ -1,4 +1,4 @@
-export type Languages =
+export type Language =
   | 'Afrikaans'
   | 'Albanian'
   | 'Amharic'
@@ -107,14 +107,14 @@ export type Languages =
 
 export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
 
-export interface Series {
+export interface Chain {
   name: string;
   description: string;
   emoji?: string;
-  languages: Languages[];
+  languages: Language[];
 }
 
-export interface ParsedMessage {
+export interface BooblMessage {
   translate: Translate;
   jokeLanguage?: 'French' | 'English';
   text: {
@@ -122,9 +122,9 @@ export interface ParsedMessage {
     translated: string;
     steps: string[];
   };
-  to: Languages;
+  to: Language;
   date: string;
-  serie: string;
+  chain: string;
   serverID: string;
   userID: string;
   public: boolean;
@@ -133,18 +133,18 @@ export interface ParsedMessage {
   notionURL?: string;
 }
 
-export interface ParsedUser {
+export interface BooblUser {
   visibility: boolean;
   share: 'private' | 'unlisted' | 'public';
   defaults: {
-    to: Languages;
-    serie: string;
+    to: Language;
+    chain: string;
   };
   messages: string[];
 }
 
-export interface ParsedServer {
+export interface BooblServer {
   visibleOn: 'none' | 'channel' | 'server';
   channel: string;
-  defaultLanguage: Languages;
+  defaultLanguage: Language;
 }

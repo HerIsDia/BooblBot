@@ -1,6 +1,6 @@
-import { Languages } from './types';
+import { Language } from './types';
 
-export const languages: Languages[] = [
+export const languages: Language[] = [
   'Afrikaans',
   'Albanian',
   'Amharic',
@@ -108,7 +108,7 @@ export const languages: Languages[] = [
   'Zulu',
 ];
 
-export const languagesSelectors: Languages[] = [
+export const languagesSelectors: Language[] = [
   'French',
   'English',
   'Spanish',
