@@ -1,8 +1,16 @@
 import { CommandInteraction } from 'discord.js';
 import { ByteLengthQueuingStrategy } from 'node:stream/web';
+import { booblTranslateButton } from '../generators/buttons';
 import { errorEmbed, translateEmbed } from '../generators/embeds';
-import { BooblEmbed, BooblMessage, Serie, Translate } from '../types';
+import {
+  BooblEmbed,
+  BooblMessage,
+  BooblTranslateButton,
+  Serie,
+  Translate,
+} from '../types';
 import { series } from './series';
+import { shortText } from './shortText';
 import { translate } from './translate';
 
 export const process = async (
@@ -26,8 +34,14 @@ export const process = async (
     type: message.translate,
   };
 
+  let button: BooblTranslateButton | undefined;
+
   let progressText: string = original;
 
+  if (progressText.length > 1024) {
+    const url = await shortText(progressText);
+    embedOptions.start = `Your text is too long to be showed in the embed. \n[Click here to see.](${url})`;
+  }
   await interaction.reply({
     embeds: [translateEmbed(embedOptions)],
     ephemeral: !message.isVisible,
@@ -48,8 +62,17 @@ export const process = async (
     });
   }
 
-  embedOptions.end = progressText;
+  if (!message.isVisible) button = { ...button, showButton: true };
+
+  if (progressText.length > 1024) {
+    const url = await shortText(progressText);
+    embedOptions.end = `Your text is too long to be showed in the embed. \n[Click here to see.](${url})`;
+  } else {
+    embedOptions.end = progressText;
+  }
+  button = { ...button, shareButton: true, publishButton: true };
   await interaction.editReply({
     embeds: [translateEmbed(embedOptions)],
+    components: [booblTranslateButton(button as BooblTranslateButton)],
   });
 };

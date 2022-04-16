@@ -167,3 +167,19 @@ export interface BooblEmbed {
   user: User;
   end?: string;
 }
+
+export interface BooblTranslateButton {
+  showButton?: boolean;
+  shareButton?: boolean;
+  publishButton?: boolean;
+  notionURL?: string;
+}
+
+export interface TeknikAPIResult {
+  id: number;
+  url: string;
+  title: string;
+  syntax: string;
+  expiration: string;
+  password: string;
+}

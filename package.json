@@ -24,10 +24,10 @@
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
     "@vitalets/google-translate-api": "^8.0.0",
+    "axios": "^0.26.1",
     "discord-api-types": "^0.30.0",
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0",
-    "nanoid": "^3.3.2"
+    "dotenv": "^16.0.0"
   },
   "description": "This is a template for creating a discord bot."
 }
