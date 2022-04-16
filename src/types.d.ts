@@ -107,12 +107,7 @@ export type Language =
 
 export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
 
-export type SerieName =
-  | 'The original'
-  | 'The default'
-  | 'The lore'
-  | 'The lunatic'
-  | 'The surprise';
+export type SerieName = 'The original' | 'The default' | 'The surprise';
 
 export interface Serie {
   name: SerieName;
@@ -127,7 +122,6 @@ export interface BooblMessage {
   text: {
     original: string;
     translated?: string;
-    steps?: string[];
   };
   to: Language;
   date: Date;
@@ -138,6 +132,8 @@ export interface BooblMessage {
   inNotion: boolean;
   isPublish: boolean;
   notionURL?: string;
+  button?: BooblTranslateButton;
+  id?: string;
 }
 
 export interface BooblUser {

@@ -1,13 +1,12 @@
 import { CommandInteraction } from 'discord.js';
-import { ByteLengthQueuingStrategy } from 'node:stream/web';
+import { writeFileSync } from 'fs';
 import { booblTranslateButton } from '../generators/buttons';
-import { errorEmbed, translateEmbed } from '../generators/embeds';
+import { translateEmbed } from '../generators/embeds';
 import {
   BooblEmbed,
   BooblMessage,
   BooblTranslateButton,
   Serie,
-  Translate,
 } from '../types';
 import { series } from './series';
 import { shortText } from './shortText';
@@ -75,4 +74,16 @@ export const process = async (
     embeds: [translateEmbed(embedOptions)],
     components: [booblTranslateButton(button as BooblTranslateButton)],
   });
+
+  const exportMessage: BooblMessage = {
+    ...message,
+    text: {
+      ...message.text,
+      translated: progressText,
+    },
+    button,
+    id: reply.id,
+  };
+  const json = JSON.stringify(exportMessage);
+  writeFileSync(`./src/data/messages/${exportMessage.id}.json`, json);
 };

@@ -188,3 +188,4 @@ pnpm-lock.yaml
 .gitpod.yml
 .gitignore
 package-lock.json
+src/data/*/*.json
