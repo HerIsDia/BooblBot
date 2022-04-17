@@ -19,7 +19,7 @@ export const process = async (
   const { text } = message;
   const { original } = text;
   const serie = series().find((serie) => serie.name === message.serie) as Serie;
-  const languages = serie.languages;
+  const languages = [...serie.languages];
   languages.push(message.to);
 
   let embedOptions: BooblEmbed = {
