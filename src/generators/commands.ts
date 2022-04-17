@@ -23,12 +23,6 @@ const translate = new SlashCommandBuilder()
           .setDescription('The text to translate.')
           .setRequired(true)
       )
-      .addBooleanOption((bool) =>
-        bool
-          .setName('show')
-          .setDescription('Do you want to make the translation public?')
-          .setRequired(false)
-      )
       .addStringOption((str) =>
         str
           .setName('to')
@@ -67,12 +61,6 @@ const translate = new SlashCommandBuilder()
           .setDescription('The ID of the message to translate.')
           .setRequired(true)
       )
-      .addBooleanOption((bool) =>
-        bool
-          .setName('show')
-          .setDescription('Do you want to make the translation public?')
-          .setRequired(false)
-      )
       .addStringOption((str) =>
         str
           .setName('to')
@@ -110,12 +98,6 @@ const translate = new SlashCommandBuilder()
           .setName('topic')
           .setDescription('The topic to translate.')
           .setRequired(true)
-      )
-      .addBooleanOption((bool) =>
-        bool
-          .setName('show')
-          .setDescription('Do you want to make the translation public?')
-          .setRequired(false)
       )
       .addStringOption((str) =>
         str
@@ -157,12 +139,6 @@ const translate = new SlashCommandBuilder()
           .addChoice('French', 'fr')
           .addChoice('English', 'en')
       )
-      .addBooleanOption((bool) =>
-        bool
-          .setName('show')
-          .setDescription('Do you want to make the translation public?')
-          .setRequired(false)
-      )
       .addStringOption((str) =>
         str
           .setName('to')
@@ -197,7 +173,35 @@ const translateApp = new ContextMenuCommandBuilder()
   .setName('translate');
 
 const settings = new SlashCommandBuilder()
-  .setName('settings')
-  .setDescription('🔧 Open the settings menu.');
+  .setName('setup')
+  .setDescription('🔧 Setup the bot for the server.')
+  .addBooleanOption((bool) =>
+    bool
+      .setName('showbutton')
+      .setDescription(
+        '🔧 Show the button to let user share they content using the bot.'
+      )
+      .setRequired(true)
+  )
+  .addChannelOption((channel) =>
+    channel
+      .setName('channel')
+      .addChannelType(0)
+      .setDescription(
+        '🔧 The channel where the bot will post the translated content.'
+      )
+      .setRequired(true)
+  )
+  .addStringOption((str) =>
+    str
+      .setName('language')
+      .setDescription('🔧 The language of all default translations.')
+      .setRequired(true)
+      .addChoices(
+        languagesSelectors.map((lang) => {
+          return [lang, lang];
+        })
+      )
+  );
 
 export const commands = [about, translate, translateApp, settings];

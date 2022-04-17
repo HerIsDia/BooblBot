@@ -136,18 +136,8 @@ export interface BooblMessage {
   id?: string;
 }
 
-export interface BooblUser {
-  visibility: boolean;
-  share: 'private' | 'unlisted' | 'public';
-  defaults: {
-    to: Language;
-    serie: SerieName;
-  };
-  messages: string[];
-}
-
 export interface BooblServer {
-  visibleOn: 'none' | 'channel' | 'server';
+  share: boolean;
   channel: string;
   defaultLanguage: Language;
 }

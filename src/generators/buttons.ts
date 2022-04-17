@@ -14,7 +14,7 @@ export const booblTranslateButton = (options: BooblTranslateButton) => {
     messageRow.addComponents(
       new MessageButton()
         .setStyle('PRIMARY')
-        .setLabel('Show on discord')
+        .setLabel('Send to the server')
         .setCustomId('show')
     );
   if (options.shareButton)
