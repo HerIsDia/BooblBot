@@ -5,11 +5,14 @@ import { BooblServer, Language, Serie, SerieName } from '../../types';
 import { process } from '../process';
 import wiki, { Page } from 'wikipedia';
 
-export const translateWikipedia = async (interaction: CommandInteraction) => {
-  const serverID = interaction.guild?.id;
-  const settingsServer: BooblServer = JSON.parse(
-    readFileSync(`./data/servers/${serverID}.json`, 'utf8')
-  );
+export const translateWikipedia = async (
+  interaction: CommandInteraction,
+  serverID: string,
+  to: Language,
+  serie: SerieName,
+  userID: string,
+  canBeVisible: boolean
+) => {
   const topic = interaction.options.getString('topic') as string;
   let original = '';
   let page = await wiki.page(topic).catch((err) => {
@@ -30,14 +33,6 @@ export const translateWikipedia = async (interaction: CommandInteraction) => {
     original = wikiText.extract;
   }
 
-  const to: Language =
-    (interaction.options.getString('to') as Language | undefined) ||
-    settingsServer.defaultLanguage;
-  const serie: SerieName =
-    (interaction.options.getString('serie') as SerieName | undefined) ||
-    'The default';
-  const userID = interaction.user.id;
-  const canBeVisible = settingsServer.share;
   await process(
     {
       date: new Date(),

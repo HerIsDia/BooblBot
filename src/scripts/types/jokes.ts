@@ -5,11 +5,14 @@ import { errorEmbed } from '../../generators/embeds';
 import { BooblServer, Language, Serie, SerieName } from '../../types';
 import { process } from '../process';
 
-export const translateJoke = async (interaction: CommandInteraction) => {
-  const serverID = interaction.guild?.id;
-  const settingsServer: BooblServer = JSON.parse(
-    readFileSync(`./data/servers/${serverID}.json`, 'utf8')
-  );
+export const translateJoke = async (
+  interaction: CommandInteraction,
+  serverID: string,
+  to: Language,
+  serie: SerieName,
+  userID: string,
+  canBeVisible: boolean
+) => {
   const language = interaction.options.getString('language') as string;
   const jokes = await axios({
     method: 'get',
@@ -27,14 +30,6 @@ export const translateJoke = async (interaction: CommandInteraction) => {
         ),
       ],
     });
-  const to: Language =
-    (interaction.options.getString('to') as Language | undefined) ||
-    settingsServer.defaultLanguage;
-  const serie: SerieName =
-    (interaction.options.getString('serie') as SerieName | undefined) ||
-    'The default';
-  const userID = interaction.user.id;
-  const canBeVisible = settingsServer.share;
   await process(
     {
       date: new Date(),

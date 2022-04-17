@@ -27,7 +27,7 @@ export const process = async (
     languages,
     start: original,
     serie: serie.name,
-    id: '???',
+    id: '000000000000000000',
     progress: 0,
     user: interaction.user,
     type: message.translate,
