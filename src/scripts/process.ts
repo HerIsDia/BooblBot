@@ -85,5 +85,5 @@ export const process = async (
     id: reply.id,
   };
   const json = JSON.stringify(exportMessage);
-  writeFileSync(`./src/data/messages/${exportMessage.id}.json`, json);
+  writeFileSync(`./data/messages/${exportMessage.id}.json`, json);
 };

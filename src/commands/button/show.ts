@@ -6,10 +6,7 @@ import { BooblMessage, BooblTranslateButton } from '../../types';
 
 export const run = async (client: Client, interaction: ButtonInteraction) => {
   const messageID = interaction.message.embeds[0]?.footer?.text.substring(4);
-  const messageFile = readFileSync(
-    `./src/data/messages/${messageID}.json`,
-    'utf8'
-  );
+  const messageFile = readFileSync(`./data/messages/${messageID}.json`, 'utf8');
   let message: BooblMessage = JSON.parse(messageFile);
   // const ServerID = message.serverID as string;
   let button = message.button as BooblTranslateButton;
@@ -24,7 +21,7 @@ export const run = async (client: Client, interaction: ButtonInteraction) => {
   });
   message = { ...message, button };
   writeFileSync(
-    `./src/data/messages/${messageID}.json`,
+    `./data/messages/${messageID}.json`,
     JSON.stringify(message),
     'utf8'
   );
