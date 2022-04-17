@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Create Client and Set Intents
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES],
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 const token = process.env.TOKEN as string;
 

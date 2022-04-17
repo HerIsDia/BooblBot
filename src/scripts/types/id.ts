@@ -1,18 +1,25 @@
 import { CommandInteraction } from 'discord.js';
 import { readFileSync } from 'fs';
-import { errorEmbed } from '../generators/embeds';
-import { BooblServer, Language, Serie, SerieName } from '../types';
-import { process } from './process';
+import { errorEmbed } from '../../generators/embeds';
+import { BooblServer, Language, Serie, SerieName } from '../../types';
+import { process } from '../process';
 
-export const translateText = async (interaction: CommandInteraction) => {
+export const translateID = async (interaction: CommandInteraction) => {
   const serverID = interaction.guild?.id;
   const settingsServer: BooblServer = JSON.parse(
     readFileSync(`./data/servers/${serverID}.json`, 'utf8')
   );
-  const original = interaction.options.getString('content');
+  const ID = interaction.options.getString('id') as string;
+  let original = await interaction.channel?.messages.fetch(ID);
+
   if (!original)
     return interaction.reply({
-      embeds: [errorEmbed('Missing value.', '`content` should not be empty.')],
+      embeds: [
+        errorEmbed(
+          'Bad ID.',
+          'The ID provided is not valid. Be sure than the ID of the message is on the channel and that the message is not deleted.'
+        ),
+      ],
     });
   const to: Language =
     (interaction.options.getString('to') as Language | undefined) ||
@@ -27,11 +34,11 @@ export const translateText = async (interaction: CommandInteraction) => {
       date: new Date(),
       serie,
       userID,
-      text: { original },
+      text: { original: original.content },
       to,
       canBeVisible,
       serverID,
-      translate: 'text',
+      translate: 'message',
     },
     interaction
   );

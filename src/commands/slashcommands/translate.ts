@@ -1,8 +1,11 @@
 import { Client, CommandInteraction } from 'discord.js';
 import { Translate } from '../../types';
 import { errorEmbed } from '../../generators/embeds';
-import { translateText } from '../../scripts/text';
+import { translateText } from '../../scripts/types/text';
 import { readdirSync } from 'fs';
+import { translateID } from '../../scripts/types/id';
+import { translateWikipedia } from '../../scripts/types/wiki';
+import { translateJoke } from '../../scripts/types/jokes';
 
 export const run = async (client: Client, interaction: CommandInteraction) => {
   const eventFiles = readdirSync('./data/servers').filter((file) =>
@@ -24,6 +27,18 @@ export const run = async (client: Client, interaction: CommandInteraction) => {
   switch (type) {
     case 'text':
       translateText(interaction);
+      break;
+
+    case 'message':
+      translateID(interaction);
+      break;
+
+    case 'joke':
+      translateJoke(interaction);
+      break;
+
+    case 'wikipedia':
+      translateWikipedia(interaction);
       break;
 
     default:

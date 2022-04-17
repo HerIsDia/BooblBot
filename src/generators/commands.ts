@@ -135,9 +135,13 @@ const translate = new SlashCommandBuilder()
         str
           .setName('language')
           .setDescription('The language of the joke.')
-          .setRequired(false)
+          .setRequired(true)
           .addChoice('French', 'fr')
           .addChoice('English', 'en')
+          .addChoice('Czech', 'cs')
+          .addChoice('German', 'de')
+          .addChoice('Spanish', 'es')
+          .addChoice('Portuguese', 'pt')
       )
       .addStringOption((str) =>
         str
