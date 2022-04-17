@@ -128,9 +128,9 @@ export interface BooblMessage {
   serie: SerieName;
   serverID?: string;
   userID: string;
-  isVisible: boolean;
-  inNotion: boolean;
-  isPublish: boolean;
+  canBeVisible?: boolean;
+  inNotion?: boolean;
+  isPublish?: boolean;
   notionURL?: string;
   button?: BooblTranslateButton;
   id?: string;

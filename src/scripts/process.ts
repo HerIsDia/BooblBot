@@ -1,7 +1,7 @@
 import { CommandInteraction } from 'discord.js';
 import { writeFileSync } from 'fs';
 import { booblTranslateButton } from '../generators/buttons';
-import { translateEmbed } from '../generators/embeds';
+import { errorEmbed, translateEmbed } from '../generators/embeds';
 import {
   BooblEmbed,
   BooblMessage,
@@ -43,7 +43,7 @@ export const process = async (
   }
   await interaction.reply({
     embeds: [translateEmbed(embedOptions)],
-    ephemeral: !message.isVisible,
+    ephemeral: true,
   });
   const reply = await interaction.fetchReply();
   embedOptions.id = reply.id;
@@ -54,14 +54,25 @@ export const process = async (
 
   for (let index = 0; index < languages.length; index++) {
     const text = await translate(progressText, languages[index]);
-    progressText = text;
+    if (text.error) {
+      return interaction.editReply({
+        embeds: [
+          translateEmbed(embedOptions),
+          errorEmbed(
+            'Translation failed.',
+            'Bad luck. Some translation can result as a failure due to the fact than the bot translate content through multiple language and so sometimes, all the language combined destroy the text.'
+          ),
+        ],
+      });
+    }
+    progressText = text.text as string;
     embedOptions.progress++;
     await interaction.editReply({
       embeds: [translateEmbed(embedOptions)],
     });
   }
 
-  if (!message.isVisible) button = { ...button, showButton: true };
+  if (message.canBeVisible) button = { ...button, showButton: true };
 
   if (progressText.length > 1024) {
     const url = await shortText(progressText);

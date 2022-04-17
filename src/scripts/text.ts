@@ -1,35 +1,35 @@
 import { CommandInteraction } from 'discord.js';
+import { readFileSync } from 'fs';
 import { errorEmbed } from '../generators/embeds';
-import { Language, Serie, SerieName } from '../types';
+import { BooblServer, Language, Serie, SerieName } from '../types';
 import { process } from './process';
 
 export const translateText = async (interaction: CommandInteraction) => {
+  const serverID = interaction.guild?.id;
+  const settingsServer: BooblServer = JSON.parse(
+    readFileSync(`./data/servers/${serverID}.json`, 'utf8')
+  );
   const original = interaction.options.getString('content');
   if (!original)
     return interaction.reply({
       embeds: [errorEmbed('Missing value.', '`content` should not be empty.')],
     });
   const to: Language =
-    (interaction.options.getString('to') as Language | undefined) || 'English';
+    (interaction.options.getString('to') as Language | undefined) ||
+    settingsServer.defaultLanguage;
   const serie: SerieName =
     (interaction.options.getString('serie') as SerieName | undefined) ||
     'The default';
   const userID = interaction.user.id;
-  const serverID = interaction.guild?.id;
-  const inNotion = false;
-  const isVisible = interaction.options.getBoolean('show') || false;
-  const isPublish = false;
-
+  const canBeVisible = settingsServer.share;
   await process(
     {
       date: new Date(),
-      inNotion,
-      isPublish,
       serie,
       userID,
       text: { original },
       to,
-      isVisible,
+      canBeVisible,
       serverID,
       translate: 'text',
     },

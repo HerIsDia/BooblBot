@@ -2,7 +2,7 @@ import { Client, CommandInteraction } from 'discord.js';
 import { Translate } from '../../types';
 import { errorEmbed } from '../../generators/embeds';
 import { translateText } from '../../scripts/text';
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync } from 'fs';
 
 export const run = async (client: Client, interaction: CommandInteraction) => {
   const eventFiles = readdirSync('./data/servers').filter((file) =>
