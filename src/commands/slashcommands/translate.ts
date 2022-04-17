@@ -1,6 +1,5 @@
 import { Client, CommandInteraction, User } from 'discord.js';
 import { BooblUser, Translate } from '../../types';
-import { nanoid } from 'nanoid';
 import { errorEmbed } from '../../generators/embeds';
 import { translateText } from '../../scripts/text';
 
