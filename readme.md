@@ -25,8 +25,6 @@ In other terms, this tool will put your text in a language A, the result will be
 - Translate text from a lot of language in a row using Google Translate.
 - Can translate plain text, discord's messages, generated jokes or Wikipedia's summary.
 
-**For all informations, look on the [wiki page](https://github.com/diamantdev/BooblBot/wiki).**
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
