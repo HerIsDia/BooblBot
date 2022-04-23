@@ -80,21 +80,12 @@ export const process = async (
   } else {
     embedOptions.end = progressText;
   }
-  button = { ...button, shareButton: true, publishButton: true };
-  await interaction.editReply({
-    embeds: [translateEmbed(embedOptions)],
-    components: [booblTranslateButton(button as BooblTranslateButton)],
-  });
-
-  const exportMessage: BooblMessage = {
-    ...message,
-    text: {
-      ...message.text,
-      translated: progressText,
-    },
-    button,
-    id: reply.id,
-  };
-  const json = JSON.stringify(exportMessage);
-  writeFileSync(`./data/messages/${exportMessage.id}.json`, json);
+  if (button) {
+    await interaction.editReply({
+      embeds: [translateEmbed(embedOptions)],
+      components: [booblTranslateButton(button as BooblTranslateButton)],
+    });
+  } else {
+    await interaction.editReply({ embeds: [translateEmbed(embedOptions)] });
+  }
 };

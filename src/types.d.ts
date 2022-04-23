@@ -129,9 +129,6 @@ export interface BooblMessage {
   serverID?: string;
   userID: string;
   canBeVisible?: boolean;
-  inNotion?: boolean;
-  isPublish?: boolean;
-  notionURL?: string;
   button?: BooblTranslateButton;
   id?: string;
 }
@@ -156,9 +153,6 @@ export interface BooblEmbed {
 
 export interface BooblTranslateButton {
   showButton?: boolean;
-  shareButton?: boolean;
-  publishButton?: boolean;
-  notionURL?: string;
 }
 
 export interface TeknikAPIResult {
