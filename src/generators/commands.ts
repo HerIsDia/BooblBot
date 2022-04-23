@@ -172,10 +172,6 @@ const translate = new SlashCommandBuilder()
       )
   );
 
-const translateApp = new ContextMenuCommandBuilder()
-  .setType(3)
-  .setName('translate');
-
 const settings = new SlashCommandBuilder()
   .setName('setup')
   .setDescription('🔧 Setup the bot for the server.')
@@ -208,4 +204,4 @@ const settings = new SlashCommandBuilder()
       )
   );
 
-export const commands = [about, translate, translateApp, settings];
+export const commands = [about, translate, settings];

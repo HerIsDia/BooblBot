@@ -39,7 +39,7 @@ export const translateJoke = async (
       to,
       canBeVisible,
       serverID,
-      translate: 'message',
+      translate: 'joke',
     },
     interaction
   );

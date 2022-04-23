@@ -16,14 +16,14 @@ export const aboutEmbed = (user: User) => {
     .setThumbnail(
       'https://media.discordapp.net/attachments/862742407925727283/958854744099676200/BooblBot.png'
     )
-    .setColor(13854074);
+    .setColor(5128583);
 };
 
 export const errorEmbed = (title: string, description: string) => {
   return new Embed()
     .setTitle(title)
     .setDescription(description)
-    .setColor(13854074)
+    .setColor(12883865)
     .setTimestamp(new Date());
 };
 
@@ -31,43 +31,37 @@ export const translateEmbed = (options: BooblEmbed) => {
   return new Embed()
     .setTitle(
       options.end
-        ? 'Your translation has been translated.'
-        : 'Your translation is in progress.'
+        ? `The ${
+            options.type == 'wikipedia' ? 'wikipedia summary' : options.type
+          } has been translated !`
+        : 'In progress...'
     )
     .setDescription(
-      options.end
-        ? `Your text has been translated in __${
-            options.languages.length
-          }__ languages in a row with __${
-            options.serie
-          }__ serie.\nThe result is in __${
-            options.languages[options.languages.length - 1]
-          }__.`
-        : `${
-            inProgressNumber(options.progress, options.languages.length)
-              .percentage2Digits
-          }%. (${
-            options.languages.length > options.progress
-              ? options.languages[options.progress]
-              : options.languages[options.languages.length - 1]
-          })`
+      `${
+        options.end
+          ? `In **${options.languages.length}** languages in a row.\nUsing __${options.serie}__ serie.`
+          : `**Progression: ${options.progress + 1}/${
+              options.languages.length
+            }.**\n*Language: ${
+              options.languages.length > options.progress
+                ? options.languages[options.progress]
+                : options.languages[options.languages.length - 1]
+            }.*`
+      }\nResult ${options.end ? ' ' : 'will be '}in __${
+        options.languages[options.languages.length - 1]
+      }__.`
     )
     .setTimestamp(options.date)
-    .setColor(options.end ? 11060870 : 15968018)
+    .setColor(options.end ? 13361085 : 5875160)
     .addField({
-      name: 'from',
+      name: 'From:',
       value: `> ${options.start.replace(/\n/g, '\n> ')}`,
     })
     .addField({
-      name: 'to',
+      name: 'To:',
       value: options.end
         ? `> ${options.end.replace(/\n/g, '\n> ')}`
-        : `> ${
-            inProgressNumber(options.progress, options.languages.length).allBar
-          }`,
-    })
-    .setFooter({
-      text: `ID: ${options.id}`,
+        : `> ${inProgressNumber(options.progress, options.languages.length)}`,
     })
     .setAuthor({
       name: options.user.tag,

@@ -67,9 +67,11 @@ export const process = async (
     }
     progressText = text.text as string;
     embedOptions.progress++;
-    await interaction.editReply({
-      embeds: [translateEmbed(embedOptions)],
-    });
+    if (embedOptions.progress !== languages.length) {
+      await interaction.editReply({
+        embeds: [translateEmbed(embedOptions)],
+      });
+    }
   }
 
   if (message.canBeVisible) button = { ...button, showButton: true };
@@ -80,10 +82,13 @@ export const process = async (
   } else {
     embedOptions.end = progressText;
   }
+
   if (button) {
     await interaction.editReply({
       embeds: [translateEmbed(embedOptions)],
-      components: [booblTranslateButton(button as BooblTranslateButton)],
+      components: [
+        booblTranslateButton(button as BooblTranslateButton, interaction),
+      ],
     });
   } else {
     await interaction.editReply({ embeds: [translateEmbed(embedOptions)] });

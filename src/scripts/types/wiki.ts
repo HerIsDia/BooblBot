@@ -42,7 +42,7 @@ export const translateWikipedia = async (
       to,
       canBeVisible,
       serverID,
-      translate: 'message',
+      translate: 'wikipedia',
     },
     interaction
   );
