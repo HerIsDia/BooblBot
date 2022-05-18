@@ -1,5 +1,5 @@
 import { Client, CommandInteraction } from 'discord.js';
-import { BooblServer, Language, SerieName, Translate } from '../../types';
+import { BooblServer, Language, Translate } from '../../types';
 import { errorEmbed } from '../../generators/embeds';
 import { translateText } from '../../scripts/types/text';
 import { readdirSync, readFileSync } from 'fs';
@@ -32,9 +32,7 @@ export const run = async (client: Client, interaction: CommandInteraction) => {
   const to: Language =
     (interaction.options.getString('to') as Language | undefined) ||
     settingsServer.defaultLanguage;
-  const serie: SerieName =
-    (interaction.options.getString('serie') as SerieName | undefined) ||
-    'The default';
+  const serie: string = interaction.options.getString('serie') || 'The default';
   const userID = interaction.user.id;
   const canBeVisible = settingsServer.share;
 

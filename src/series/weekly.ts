@@ -1,5 +1,5 @@
 import { languages } from '../languages';
-import { Language } from '../types';
+import { Language, Serie } from '../types';
 
 let lastWeeklyDate = new Date(0);
 let weeklyLanguages: Language[] = [];
@@ -39,4 +39,4 @@ module.exports = {
     }
     return weeklyLanguages;
   },
-};
+} as Serie;

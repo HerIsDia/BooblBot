@@ -1,15 +1,14 @@
 import { CommandInteraction } from 'discord.js';
-import { readFileSync } from 'fs';
+import wiki from 'wikipedia';
 import { errorEmbed } from '../../generators/embeds';
-import { BooblServer, Language, Serie, SerieName } from '../../types';
+import { Language } from '../../types';
 import { process } from '../process';
-import wiki, { Page } from 'wikipedia';
 
 export const translateWikipedia = async (
   interaction: CommandInteraction,
   serverID: string,
   to: Language,
-  serie: SerieName,
+  serie: string,
   userID: string,
   canBeVisible: boolean
 ) => {

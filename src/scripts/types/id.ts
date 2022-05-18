@@ -1,13 +1,13 @@
 import { CommandInteraction } from 'discord.js';
 import { errorEmbed } from '../../generators/embeds';
-import { Language, SerieName } from '../../types';
+import { Language } from '../../types';
 import { process } from '../process';
 
 export const translateID = async (
   interaction: CommandInteraction,
   serverID: string,
   to: Language,
-  serie: SerieName,
+  serie: string,
   userID: string,
   canBeVisible: boolean
 ) => {
