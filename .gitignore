@@ -189,3 +189,4 @@ pnpm-lock.yaml
 .gitignore
 package-lock.json
 data/*/*.json
+.internal/*
