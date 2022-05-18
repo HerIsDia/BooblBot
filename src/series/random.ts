@@ -1,5 +1,5 @@
 import { languages } from '../languages';
-import { Language, Serie } from '../types';
+import { Language } from '../types';
 
 module.exports = {
   name: 'The surprise',

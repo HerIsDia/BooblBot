@@ -1,8 +1,7 @@
-import { CommandInteraction } from 'discord.js';
 import axios from 'axios';
-import { readFileSync } from 'fs';
+import { CommandInteraction } from 'discord.js';
 import { errorEmbed } from '../../generators/embeds';
-import { BooblServer, Language, Serie, SerieName } from '../../types';
+import { Language, SerieName } from '../../types';
 import { process } from '../process';
 
 export const translateJoke = async (

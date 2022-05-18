@@ -1,7 +1,6 @@
 import { CommandInteraction } from 'discord.js';
-import { readFileSync } from 'fs';
 import { errorEmbed } from '../../generators/embeds';
-import { BooblServer, Language, Serie, SerieName } from '../../types';
+import { Language, SerieName } from '../../types';
 import { process } from '../process';
 
 export const translateText = async (

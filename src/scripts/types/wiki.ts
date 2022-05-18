@@ -25,7 +25,10 @@ export const translateWikipedia = async (
   });
   if (page) {
     let wikiText = await page.summary();
-    while (wikiText.extract.toLowerCase().includes('may refer to:')) {
+    while (
+      wikiText.extract.toLowerCase().includes('may refer to:') ||
+      wikiText.extract.toLowerCase().includes('most often refers to:')
+    ) {
       const wikiRelated = await wiki.related(topic);
       const relatedLengh = wikiRelated.pages.length;
       const randomRelated = Math.floor(Math.random() * relatedLengh);

@@ -1,5 +1,4 @@
 import { CommandInteraction } from 'discord.js';
-import { writeFileSync } from 'fs';
 import { booblTranslateButton } from '../generators/buttons';
 import { errorEmbed, translateEmbed } from '../generators/embeds';
 import {
