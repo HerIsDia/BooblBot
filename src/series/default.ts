@@ -4,7 +4,7 @@ module.exports = {
   name: 'The default',
   description: 'The default serie of languages of BooblBot',
   emoji: '⚡',
-  languages: [
+  languages: () => [
     'English',
     'French',
     'Japanese',

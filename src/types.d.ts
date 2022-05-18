@@ -113,7 +113,7 @@ export interface Serie {
   name: SerieName;
   description: string;
   emoji?: string;
-  languages: Language[];
+  languages(): Language[];
 }
 
 export interface BooblMessage {

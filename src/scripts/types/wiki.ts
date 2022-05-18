@@ -20,6 +20,7 @@ export const translateWikipedia = async (
       embeds: [
         errorEmbed('Bad topic.', `${topic} don't exist on wikipedia, jeez.`),
       ],
+      ephemeral: true,
     });
   });
   if (page) {

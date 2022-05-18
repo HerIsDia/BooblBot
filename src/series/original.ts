@@ -4,7 +4,7 @@ module.exports = {
   name: 'The original',
   description: 'The first serie created EVER of the entire project',
   emoji: '⏳',
-  languages: [
+  languages: () => [
     'French',
     'English',
     'Japanese',

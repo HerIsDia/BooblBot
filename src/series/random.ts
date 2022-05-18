@@ -16,5 +16,5 @@ module.exports = {
   description:
     'Generate randomly a serie of languages between 10 and 100 languages',
   emoji: '🎲',
-  languages: generate(),
+  languages: () => generate(),
 };
