@@ -1,15 +1,14 @@
 import { CommandInteraction } from 'discord.js';
-import { readFileSync } from 'fs';
+import wiki from 'wikipedia';
 import { errorEmbed } from '../../generators/embeds';
-import { BooblServer, Language, Serie, SerieName } from '../../types';
+import { Language } from '../../types';
 import { process } from '../process';
-import wiki, { Page } from 'wikipedia';
 
 export const translateWikipedia = async (
   interaction: CommandInteraction,
   serverID: string,
   to: Language,
-  serie: SerieName,
+  serie: string,
   userID: string,
   canBeVisible: boolean
 ) => {
@@ -20,11 +19,15 @@ export const translateWikipedia = async (
       embeds: [
         errorEmbed('Bad topic.', `${topic} don't exist on wikipedia, jeez.`),
       ],
+      ephemeral: true,
     });
   });
   if (page) {
     let wikiText = await page.summary();
-    while (wikiText.extract.toLowerCase().includes('may refer to:')) {
+    while (
+      wikiText.extract.toLowerCase().includes('may refer to:') ||
+      wikiText.extract.toLowerCase().includes('most often refers to:')
+    ) {
       const wikiRelated = await wiki.related(topic);
       const relatedLengh = wikiRelated.pages.length;
       const randomRelated = Math.floor(Math.random() * relatedLengh);

@@ -1,5 +1,4 @@
 import { CommandInteraction } from 'discord.js';
-import { writeFileSync } from 'fs';
 import { booblTranslateButton } from '../generators/buttons';
 import { errorEmbed, translateEmbed } from '../generators/embeds';
 import {
@@ -19,7 +18,7 @@ export const process = async (
   const { text } = message;
   const { original } = text;
   const serie = series().find((serie) => serie.name === message.serie) as Serie;
-  const languages = [...serie.languages];
+  const languages = [...serie.languages()];
   languages.push(message.to);
 
   let embedOptions: BooblEmbed = {

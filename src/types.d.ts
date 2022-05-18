@@ -107,13 +107,11 @@ export type Language =
 
 export type Translate = 'text' | 'message' | 'wikipedia' | 'joke';
 
-export type SerieName = 'The original' | 'The default' | 'The surprise';
-
 export interface Serie {
-  name: SerieName;
+  name: string;
   description: string;
   emoji?: string;
-  languages: Language[];
+  languages(): Language[];
 }
 
 export interface BooblMessage {
