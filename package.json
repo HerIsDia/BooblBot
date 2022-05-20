@@ -1,16 +1,12 @@
 {
   "name": "booblbot",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "src/index.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --watch src src/index.ts",
     "start": "ts-node src/index.ts"
   },
-  "keywords": [
-    "template",
-    "discord",
-    "bot"
-  ],
+  "keywords": ["template", "discord", "bot"],
   "author": "Diamant Lelouette <git@diamant.dev> (https://diamant.dev/)",
   "license": "MIT",
   "devDependencies": {

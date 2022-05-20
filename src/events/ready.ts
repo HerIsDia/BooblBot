@@ -9,7 +9,7 @@ module.exports = {
   run: (client: Client) => {
     registerCommands(token, client);
     client.user?.setActivity({
-      name: 'BooblBot - Version 1.1.',
+      name: 'BooblBot - Version 1.1.1.',
     });
   },
 };
